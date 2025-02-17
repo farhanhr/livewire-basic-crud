@@ -13,10 +13,12 @@ class Student extends Component
 
     public function store()
     {
-        $this->name = "John";
-        $this->email = "John@mail.com";
-        $this->address = "Florida";
-
+        $rules = [
+            'name' => 'required|string',
+            'email' => 'required|email',
+            'address' => 'required|string',
+        ];
+        $validate = $this->validate($rules);
 
     }
 

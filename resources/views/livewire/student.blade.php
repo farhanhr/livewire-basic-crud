@@ -1,25 +1,36 @@
 <div>
 
     <div class="container">
-        <!-- START FORM -->
+        @if ($errors->any())
+            <div class="pt-3">
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        @endif
+        
         <div class="my-3 p-3 bg-body rounded shadow-sm">
             <form>
                 <div class="mb-3 row">
                     <label for="name" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="name" name="name" value="{{ $name }}">
+                        <input type="text" class="form-control" id="name" name="name" wire:model="name">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="email" class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" id="email" name="email" value="{{ $email }}">
+                        <input type="email" class="form-control" id="email" name="email" wire:model="email"">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="address" class="col-sm-2 col-form-label">Address</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="address" name="address" value="{{ $address }}">
+                        <input type="text" class="form-control" id="address" name="address" wire:model="address">
                     </div>
                 </div>
                 <div class="mb-3 row">
