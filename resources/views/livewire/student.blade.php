@@ -5,26 +5,27 @@
         <div class="my-3 p-3 bg-body rounded shadow-sm">
             <form>
                 <div class="mb-3 row">
-                    <label for="nama" class="col-sm-2 col-form-label">Nama</label>
+                    <label for="name" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" id="name" name="name" value="{{ $name }}">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="email" class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control">
+                        <input type="email" class="form-control" id="email" name="email" value="{{ $email }}">
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
+                    <label for="address" class="col-sm-2 col-form-label">Address</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" id="address" name="address" value="{{ $address }}">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label class="col-sm-2 col-form-label"></label>
-                    <div class="col-sm-10"><button type="button" class="btn btn-primary" name="submit">SIMPAN</button>
+                    <div class="col-sm-10">
+                        <button type="button" wire:click="store()" class="btn btn-primary" name="submit">Save</button>
                     </div>
                 </div>
             </form>
@@ -38,9 +39,9 @@
                 <thead>
                     <tr>
                         <th class="col-md-1">No</th>
-                        <th class="col-md-4">Nama</th>
+                        <th class="col-md-4">Name</th>
                         <th class="col-md-3">Email</th>
-                        <th class="col-md-2">Alamat</th>
+                        <th class="col-md-2">Address</th>
                         <th class="col-md-2">Aksi</th>
                     </tr>
                 </thead>
