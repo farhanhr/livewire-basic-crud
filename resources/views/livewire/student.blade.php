@@ -44,7 +44,11 @@
                 <div class="mb-3 row">
                     <label class="col-sm-2 col-form-label"></label>
                     <div class="col-sm-10">
+                        @if ($updateData == false)
                         <button type="button" wire:click="store()" class="btn btn-primary" name="submit">Save</button>
+                        @else
+                        <button type="button" wire:click="update()" class="btn btn-primary" name="submit">Update</button>
+                        @endif
                     </div>
                 </div>
             </form>
@@ -65,19 +69,21 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($studentsData as $key => $student)
                     <tr>
-                        <td>1</td>
-                        <td>Muhammad</td>
-                        <td>muhammad@gmail.com</td>
-                        <td>Yogyakarta</td>
+                        <td>{{ $studentsData->firstItem() + $key }}</td>
+                        <td>{{ $student->name }}</td>
+                        <td>{{ $student->email }}</td>
+                        <td>{{ $student->address }}</td>
                         <td>
-                            <a href="" class="btn btn-warning btn-sm">Edit</a>
-                            <a href="" class="btn btn-danger btn-sm">Del</a>
+                            <a wire:click="edit({{ $student->id }})" class="btn btn-warning btn-sm">Edit</a>
+                            <a class="btn btn-danger btn-sm">Del</a>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
-
+            {{ $studentsData->links() }}
         </div>
         <!-- AKHIR DATA -->
     </div>
