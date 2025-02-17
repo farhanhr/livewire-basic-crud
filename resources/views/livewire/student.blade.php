@@ -58,6 +58,9 @@
         <!-- START DATA -->
         <div class="my-3 p-3 bg-body rounded shadow-sm">
             <h2>Students Data</h2>
+            <div class="pb-3 pt-3">
+                <input type="text" class="form-control w-25 mb-3" placeholder="Search..." wire:model.live="searchKey">
+            </div>
             <table class="table table-striped">
                 <thead>
                     <tr>

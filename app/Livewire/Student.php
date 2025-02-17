@@ -17,6 +17,7 @@ class Student extends Component
     public $address;
     public $updateData = false;
     public $studentId;
+    public $searchKey;
 
     public function store()
     {
@@ -83,7 +84,11 @@ class Student extends Component
 
     public function render()
     {
-        $data = ModelsStudent::orderBy('name', 'asc')->paginate(3);
+        if($this->searchKey != null) {
+            $data = ModelsStudent::where('name', 'like', '%'.$this->searchKey.'%')->orWhere('address', 'like', '%'.$this->searchKey.'%')->orderBy('name', 'asc')->paginate(3);
+        } else {
+            $data = ModelsStudent::orderBy('name', 'asc')->paginate(3);
+        }
 
         return view('livewire.student', ['studentsData'=>$data]);
     }
