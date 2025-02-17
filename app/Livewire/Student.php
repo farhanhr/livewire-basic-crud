@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Student as ModelsStudent;
 use Livewire\Component;
 
 class Student extends Component
@@ -18,7 +19,10 @@ class Student extends Component
             'email' => 'required|email',
             'address' => 'required|string',
         ];
-        $validate = $this->validate($rules);
+        $validated = $this->validate($rules);
+        ModelsStudent::create($validated);
+
+        session()->flash('message', 'Data created successfully');
 
     }
 

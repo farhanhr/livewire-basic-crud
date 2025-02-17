@@ -12,6 +12,14 @@
                 </div>
             </div>
         @endif
+
+        @if (session()->has('message'))
+            <div class="pt-3">
+                <div class="alert alert-success">
+                    {{ session('message') }}
+                </div>
+            </div>
+        @endif
         
         <div class="my-3 p-3 bg-body rounded shadow-sm">
             <form>
