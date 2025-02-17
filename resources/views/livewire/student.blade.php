@@ -1,4 +1,3 @@
-<div>
 
     <div class="container">
         @if ($errors->any())
@@ -58,7 +57,7 @@
 
         <!-- START DATA -->
         <div class="my-3 p-3 bg-body rounded shadow-sm">
-            <h1>Data Mahasiswa</h1>
+            <h2>Students Data</h2>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -78,7 +77,7 @@
                         <td>{{ $student->address }}</td>
                         <td>
                             <a wire:click="edit({{ $student->id }})" class="btn btn-warning btn-sm">Edit</a>
-                            <a wire:click="delete({{ $student->id }})" class="btn btn-danger btn-sm">Del</a>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal" wire:click="delete_confirmation({{ $student->id }})" class="btn btn-danger btn-sm">Del</a>
                         </td>
                     </tr>
                     @endforeach
@@ -87,6 +86,24 @@
             {{ $studentsData->links() }}
         </div>
         <!-- AKHIR DATA -->
+    <!-- Modal Konfirmasi Hapus Student -->
+<div wire:ignore.self class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this student?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <!-- Tombol Delete yang akan memanggil Livewire -->
+                <button type="button" wire:click="delete()" class="btn btn-danger" data-bs-dismiss="modal">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
     </div>
 
-</div>

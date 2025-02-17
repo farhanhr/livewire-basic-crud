@@ -59,11 +59,17 @@ class Student extends Component
         $this->clear();
     }
     
-    public function delete($id)
+    public function delete()
     {
+        $id = $this->studentId;
         ModelsStudent::find($id)->delete();
         $this->clear();
         session()->flash('message', 'Data deleted successfully');
+    }
+
+    public function delete_confirmation($id)
+    {
+        $this->studentId = $id;
     }
 
     public function clear() 
