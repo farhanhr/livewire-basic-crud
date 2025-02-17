@@ -30,6 +30,7 @@ class Student extends Component
 
         session()->flash('message', 'Data created successfully');
 
+        $this->clear();
     }
 
     public function edit($id) 
@@ -54,11 +55,29 @@ class Student extends Component
         $data->update($validated);
 
         session()->flash('message', 'Data updated successfully');
+        
+        $this->clear();
+    }
+    
+    public function delete($id)
+    {
+        ModelsStudent::find($id)->delete();
+        $this->clear();
+        session()->flash('message', 'Data deleted successfully');
+    }
+
+    public function clear() 
+    {
+        $this->name = '';
+        $this->email = '';
+        $this->address = '';
+        $this->updateData = false;
+        $this->studentId = '';
     }
 
     public function render()
     {
-        $data = ModelsStudent::orderBy('name', 'asc')->paginate(5);
+        $data = ModelsStudent::orderBy('name', 'asc')->paginate(3);
 
         return view('livewire.student', ['studentsData'=>$data]);
     }

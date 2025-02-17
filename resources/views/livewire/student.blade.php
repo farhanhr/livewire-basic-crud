@@ -49,6 +49,7 @@
                         @else
                         <button type="button" wire:click="update()" class="btn btn-primary" name="submit">Update</button>
                         @endif
+                        <button type="button" wire:click="clear()" class="btn btn-secondary" name="submit">Clear</button>
                     </div>
                 </div>
             </form>
@@ -77,7 +78,7 @@
                         <td>{{ $student->address }}</td>
                         <td>
                             <a wire:click="edit({{ $student->id }})" class="btn btn-warning btn-sm">Edit</a>
-                            <a class="btn btn-danger btn-sm">Del</a>
+                            <a wire:click="delete({{ $student->id }})" class="btn btn-danger btn-sm">Del</a>
                         </td>
                     </tr>
                     @endforeach
