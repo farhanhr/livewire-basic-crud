@@ -18,6 +18,7 @@ class Student extends Component
     public $updateData = false;
     public $studentId;
     public $searchKey;
+    public $student_selected_id = [];
 
     public function store()
     {
@@ -62,15 +63,24 @@ class Student extends Component
     
     public function delete()
     {
-        $id = $this->studentId;
-        ModelsStudent::find($id)->delete();
+        if ($this->studentId != '') {
+            $id = $this->studentId;
+            ModelsStudent::find($id)->delete();
+        }
+        if (count($this->student_selected_id)) {
+            for($x=0; $x<count($this->student_selected_id); $x++) {
+                ModelsStudent::find($this->student_selected_id[$x])->delete();
+            }
+        }
         $this->clear();
         session()->flash('message', 'Data deleted successfully');
     }
 
     public function delete_confirmation($id)
     {
-        $this->studentId = $id;
+        if ($id != '') {
+            $this->studentId = $id;
+        }
     }
 
     public function clear() 
@@ -80,6 +90,7 @@ class Student extends Component
         $this->address = '';
         $this->updateData = false;
         $this->studentId = '';
+        $this->student_selected_id= [];
     }
 
     public function render()

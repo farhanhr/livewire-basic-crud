@@ -61,9 +61,15 @@
             <div class="pb-3 pt-3">
                 <input type="text" class="form-control w-25 mb-3" placeholder="Search..." wire:model.live="searchKey">
             </div>
+
+            @if ($student_selected_id)
+                <a href="#" data-bs-toggle="modal" data-bs-target="#deleteModal" wire:click="delete_confirmation('')" class="mb-3 btn btn-danger btn-sm float-end">Delete {{ count($student_selected_id) }} data</a>
+            @endif
+
             <table class="table table-striped">
                 <thead>
                     <tr>
+                        <th></th>
                         <th class="col-md-1">No</th>
                         <th class="col-md-4">Name</th>
                         <th class="col-md-3">Email</th>
@@ -74,6 +80,7 @@
                 <tbody>
                     @foreach ($studentsData as $key => $student)
                     <tr>
+                        <td><input type="checkbox" wire:key="{{ $student->id }}" value="{{ $student->id }}" wire:model.live="student_selected_id"></td>
                         <td>{{ $studentsData->firstItem() + $key }}</td>
                         <td>{{ $student->name }}</td>
                         <td>{{ $student->email }}</td>
